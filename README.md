@@ -1,2 +1,2 @@
-# elixir-learning
-A public project with many little examples
+# Elixir Learning
+A public project with examples of problems solved using Elixir.
