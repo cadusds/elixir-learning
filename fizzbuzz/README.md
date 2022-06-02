@@ -1,4 +1,4 @@
-# Fizzbuss
+# FizzBuzz
 
 **TODO: Add description**
 
