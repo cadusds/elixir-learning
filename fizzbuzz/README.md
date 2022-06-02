@@ -1,4 +1,4 @@
-# Fizzbuss
+# FizzBuzz
 
 ## Run function
 
