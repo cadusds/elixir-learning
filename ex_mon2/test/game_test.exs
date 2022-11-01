@@ -45,4 +45,63 @@ defmodule ExMon2.GameTest do
 
     end
   end
+
+  describe "update/1" do
+    test "return the game state updated" do
+      player = Player.build("cadu",:chute,:soco,:cura)
+      Player.build("Robozão",:chute,:soco,:cura)
+      |> Game.start(player)
+
+      expected_response = %{
+        computer: %Player{
+          life: 100,
+          moves: %{
+            move_avg: :soco,
+            move_heal: :cura,
+            move_random: :chute
+          },
+          name: "Robozão"
+        },
+        player: %Player{
+          life: 100,
+          moves: %{
+            move_avg: :soco,
+            move_heal: :cura,
+            move_random: :chute
+          },
+          name: "cadu"
+        },
+        status: :started,
+        turn: :player
+      }
+      assert Game.info() == expected_response
+      new_state = %{
+        computer: %Player{
+          life: 85,
+          moves: %{
+            move_avg: :soco,
+            move_heal: :cura,
+            move_random: :chute
+          },
+          name: "Robozão"
+        },
+        player: %Player{
+          life: 20,
+          moves: %{
+            move_avg: :soco,
+            move_heal: :cura,
+            move_random: :chute
+          },
+          name: "cadu"
+        },
+        status: :started,
+        turn: :player
+      }
+      Game.update(new_state)
+
+      expected_response = %{new_state | turn: :computer, status: :continue }
+
+      assert expected_response == Game.info()
+    end
+  end
 end
